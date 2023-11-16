@@ -279,16 +279,11 @@ ul li p{
 footer{
     background-color: var(--cor0);
     width: 100%;
-<<<<<<< HEAD
-    height: 20vh;
-    
-=======
     position: absolute;
     bottom: auto;
     height: 20vh;
-
->>>>>>> a0d3d1a52e2e1489bdd1e301d94c005806c54be6
 }
+
 .rodape{
     display: flex;
     justify-content: space-between;
