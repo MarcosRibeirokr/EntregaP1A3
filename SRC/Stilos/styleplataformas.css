@@ -243,6 +243,36 @@ main{
     transform: scale(1.2);
 }
 
+/*Botões----------------------------------------------------------------------------------------------------------------------*/
+
+#botoes{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 100px;
+}
+
+#botoes a{
+    align-items: center;
+    width: 170px;
+    height: 20px;
+    padding: 15px;
+    border-radius: 15px;
+    border: 2px solid black;
+    color: white;
+    font-family: var(--fonte-padrao);
+    text-decoration: none;
+    background-image: linear-gradient(to right ,#44a3e3 4.24% , #4471E3 79.05% , #4944E3 100%);
+    transition: 0.8s;
+}
+
+#botoes #botao_remover{
+    background-image: linear-gradient(to right ,#E61717 4.24% , #B33636 79.05% , #804040 100%); 
+}
+
+#botoes a:hover{
+    transform: scale(1.2);
+}
+
 /*Footer----------------------------------------------------------------------------------------------------------------------*/
 
 footer{
@@ -362,17 +392,26 @@ footer{
         visibility: hidden;
     }
 
-    /*Ultimo Jogo ----------------------------------------*/
-   
-    #ultimo_jogo img{
-        width: 100%;
-        height: 300px;
+    /*Botões----------------------------------------------------------------------------------------------------------------------*/
+
+    #botoes{
+        padding-top: 100px;
     }
 
-    #botao-jogar {
-        width: 93%;
-        margin-top: 10px;
-        
+    #botoes a{
+        align-items: center;
+        width: 100px;
+        height: 40px;
+        font-size: 14px;
     }
+
+    #botoes #botao_remover{
+        background-image: linear-gradient(to right ,#E61717 4.24% , #B33636 79.05% , #804040 100%); 
+    }
+
+    #botoes a:hover{
+        transform: scale(1.2);
+    }
+
 
 }

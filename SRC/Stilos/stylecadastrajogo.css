@@ -24,7 +24,16 @@
 
 body{
     background-color: var(--cor1);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-image: url('../imagens/fundos/Rectangle\ 2.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
 }
+
 
 /*Header-------------------------------------------------------------------------------*/
 
@@ -163,124 +172,86 @@ header{
 }
 /*Termino da barra de pesquisa---------------------------------------------------------------------------------------------------------------------*/
 
-/*Main----------------------------------------------------------------------------------------------------------------------------*/
+
+/*Main---------------------------------------------------------------------------------------------------------------------*/
 
 main{
     min-width: 300px;
-    max-width: 1000px;
+    max-width: 1500px;
     margin: auto;
-    background-color: var(--cor1);
     padding: 20px;
     text-align: center;
 }
 
-/*divisão das Secções----------------------------------------------------------------------------------------------------------------------------*/
+/*divisão cadastrar jogo---------------------------------------------------------------------------------------------------*/
 
-.divisao{
-    display: flex;
-    align-items: center;
-    margin: 35px 0;
-
-    font-family: var(--fonte-titulo2);
+.divisao {
+    text-align: center; /* Centraliza o conteúdo */
+    padding-top: 20px;
+    padding-bottom: 40px;
+  }
+  
+  .divisao p {
+    font-size: 24px; /* Tamanho da fonte para o texto "Login" */
+    margin-bottom: 10px; /* Espaço entre o texto e a linha */
+    font-family: var(--fonte-padrao);
+    font-size: 20px;
     color: white;
-    font-size: 24px;
-    font-weight: 600;
-}
+  }
+  
+  .divisao .linha {
+    width: 400px; /* Largura da linha (ajuste conforme necessário) */
+    height: 2px; /* Altura da linha */
+    background-color: white; /* Cor da linha, você pode alterar para a cor desejada */
+    margin: 0 auto; /* Centraliza a linha horizontalmente */
+  }
 
-.divisao p{
-    padding-left: 25px;
-    padding-right: 25px;
-}
 
-.linha{
-    flex: 1;
-    border-top: 1px solid white;
-    height: 0;
-    margin: 0 5px;
-    
-    
-}
+/*Conteiner da secção cadastro---------------------------------------------------------------------------------*/
 
-/*secção artigo----------------------------------------------------------------------------------------------------------------------*/
-#foto_box{
-    width: 500px;
+  .container{
+    width: 600px;
+    height: 950px;
     margin: auto;
+    background-color: var(--cor1);
+    border-radius: 20px;
 }
 
-.info{
-    display: flex;
-    padding: 50px 0px 50px 0px;
-}
-
-
-.info aside{
-    width: 45vw;
-    color:  white;
+.container p{
+    color: white;
     font-family: var(--fonte-padrao);
-    font-weight: 600;
-    text-align: justify;
 }
 
-.info aside h2{
-    font-family: var(--fonte-titulo2);
-    text-align: center;
+/*Box dentro do container------------------------------------------------------------------------------------------------*/
+
+#box_nome,#box_plataforma ,#box_status ,#box_categoria, #box_progresso, #box_recomendo, #box_ano_lancamento, #box_versao {
+    display: inline-block;
+    font-family: var(--fonte-padrao);
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+    padding-bottom: 10px;
 }
 
-ul{
-    list-style-type: none;
-    width: 39vw;
-}
-
-li{
+#box_nome,#box_plataforma, #box_status, #box_categoria, #box_progresso, #box_recomendo, #box_ano_lancamento, #box_versao p{
     text-align: left;
-    color: white;
-    font-family: var(--fonte-padrao);
-    font-weight: 600;
 }
 
-
-
-ul li p{
-    display: inline;
+.container select,input{
+    width: 430px;
+    height:30px ;
+    border-radius: 10px
 }
 
-/*Botões----------------------------------------------------------------------------------------------------------------------*/
-
-#botoes{
-    display: flex;
-    justify-content: space-between;
-    
-}
-
-#botoes a{
-    align-items: center;
-    width: 130px;
-    height: 20px;
-    padding: 15px;
-    border-radius: 15px;
-    border: 2px solid black;
-    color: white;
-    font-family: var(--fonte-padrao);
-    text-decoration: none;
-    background-image: linear-gradient(to right ,#44a3e3 4.24% , #4471E3 79.05% , #4944E3 100%);
-    transition: 0.8s;
-}
-
-#botoes #botao_remover{
-    background-image: linear-gradient(to right ,#E61717 4.24% , #B33636 79.05% , #804040 100%); 
-}
-
-#botoes a:hover{
-    transform: scale(1.2);
+#box_descricao textarea{
+    border-radius: 10px;
 }
 
 /*Footer----------------------------------------------------------------------------------------------------------------------*/
 
 footer{
     background-color: var(--cor0);
-    width: 100%;
-    height: 20vh;
-    
+    padding-bottom: 15px;
 }
 .rodape{
     display: flex;
@@ -314,7 +285,7 @@ footer{
     font-size: 1em;
     text-decoration: none;
     padding: 10px ;
-    margin-right: 20px;
+    margin-right: 30px;
     transition-duration: 0.8s;
 }
 
@@ -322,14 +293,15 @@ footer{
     transform: scale(1.2);
 }
 
-/*Media queries ----------------------------------------------------------------------------------------------------------------------------------------------*/
-
 @media(max-width: 900px){
     /* Seção Não Recomendados para dispositivos menores que 600px */
 
     /*Configurações globais fonte -----------------*/
-    main section ul , aside{
-        font-size: 14px;
+    .link_jogo {
+        font-size: 14px; /* Tamanho da fonte reduzido */
+    }
+    .link_categoria {
+        font-size: 14px; /* Tamanho da fonte reduzido */
     }
     .links a{
         font-size: 0em;
@@ -394,34 +366,68 @@ footer{
     #botao-pesquisar {
         visibility: hidden;
     }
-    
-    /*conteudo article ---------------------------------------*/
 
-    .info{
-        display: block;
+    /*divisão cadastrar jogo---------------------------------------------------------------------------------------------------*/
+
+    .divisao {
+        text-align: center; /* Centraliza o conteúdo */
+        padding-top: 20px;
+        padding-bottom: 40px;
+    }
+    
+    .divisao p {
+        font-size: 24px; /* Tamanho da fonte para o texto "Login" */
+        margin-bottom: 10px; /* Espaço entre o texto e a linha */
+        font-family: var(--fonte-padrao);
+        font-size: 20px;
+        color: white;
+    }
+    
+    .divisao .linha {
+        width: 200px; /* Largura da linha (ajuste conforme necessário) */
+        height: 2px; /* Altura da linha */
+        background-color: white; /* Cor da linha, você pode alterar para a cor desejada */
+        margin: 0 auto; /* Centraliza a linha horizontalmente */
     }
 
-    .info ul{
+
+    /*Conteiner da secção cadastro---------------------------------------------------------------------------------*/
+
+    .container{
+        width: 350px;
+        height: 950px;
         margin: auto;
-        margin-left: 20vw;
-        padding-bottom: 50px;
+        background-color: var(--cor1);
+        border-radius: 20px;
     }
 
-    .info aside{
-        margin: auto;
+    .container p{
+        color: white;
+        font-family: var(--fonte-padrao);
     }
-    
-    /* foto-----------------------------------------------------*/
 
-    #foto_box{
-        width: 250px;
+    /*secção cadastrar jogo--------------------------------------*/
+    #box_nome,#box_plataforma ,#box_status ,#box_categoria, #box_progresso, #box_recomendo, #box_ano_lancamento, #box_versao {
+        display: inline-block;
+        font-family: var(--fonte-padrao);
+        font-size: 14px;
+        font-weight: 500;
+        color: white;
+        padding-bottom: 10px;
     }
     
-    /* footer-----------------------------------------------------*/
-    footer{
-        position: absolute;
-        bottom: auto;
-        height: auto;
+    #box_nome,#box_plataforma, #box_status, #box_categoria, #box_progresso, #box_recomendo, #box_ano_lancamento, #box_versao p{
+        text-align: left;
     }
     
+    .container select,input{
+        width: 230px;
+        height:30px ;
+        border-radius: 10px
+    }
+    
+    #box_descricao textarea{
+        border-radius: 10px;
+        width: 310px;
+    }
 }
