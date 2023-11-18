@@ -1,5 +1,5 @@
 // JSON DOS JOGOS
-var jogosJSON = {
+const jogosJSON = JSON.parse(localStorage.getItem('teste4')) || {
     "CODMW3": {
         "id": "CODMW3",
         "game": "Call of Duty: Modern Warfare 3",
@@ -215,7 +215,9 @@ var Gamesid, jogoSelecionado, plataformaok, jogoSelecionado, gameimg; //Variavel
 
 function abrirgame(Jogo) {
 
-    jogoSelecionado = jogosJSON[Jogo.id];
+    // jogoSelecionado = jogosJSON[Jogo.id];
+
+    jogoSelecionado = jogosJSON[Jogo];
 
     if (jogoSelecionado.plataforma == 'Steam') {
         plataformaok = '<a class="fa-brands fa-steam">'; /*Logo da steam sendo colada  na varaivel plataformak , o mesmo raciocinio acontece nos elses abaixo */
@@ -234,7 +236,8 @@ function abrirgame(Jogo) {
     // gameimg = '<img src="' + jogoSelecionado.foto + '" style="width: 100%; border-radius: 20px;">';
     // gameimg = '<img src="' + jogoSelecionado.foto + '" style="border-radius: 20px;">';
     // gameimg = '<img src="' + jogoSelecionado.foto + '" style="width: 100%">';
-    gameimg = '<img src="' + jogoSelecionado.foto + '" style="width: 100%; border-radius: 20px;">';
+    // gameimg = '<img src="' + jogoSelecionado.foto + '" style="width: 100%; border-radius: 20px;">';
+    gameimg = '<img id="img_game" src="' + jogoSelecionado.foto + '">';
 
 
 
@@ -253,12 +256,10 @@ function abrirgame(Jogo) {
     //Fim Get/Set
 }
 
-var botao_remover = document.getElementById('botao_remover');
-var botao_editar = document.getElementById('botao_editar');
-
-botao_remover.addEventListener('click', function() {confirmacao(1);});
-
-botao_editar.addEventListener('click', function() {confirmacao(2);});
+// var botao_remover = document.getElementById('botao_remover');
+// var botao_editar = document.getElementById('botao_editar');
+// botao_remover.addEventListener('click', function() {confirmacao(1);});
+// botao_editar.addEventListener('click', function() {confirmacao(2);});
 
 function confirmacao(id) {
     if (id === 1) {
@@ -271,4 +272,67 @@ function confirmacao(id) {
         window.alert('Você agora irá editar as informações do jogo');
         
     }
+}
+
+// a partir daqui adicionar codigo automatico na tela biblioteca e também adicionar o game em um json no cache
+
+function adicionarGame() {
+
+    const id = document.getElementById('id_input').value;
+    const game = document.getElementById('nome_input').value;
+    const foto = document.getElementById('capa_input').value;
+    const plataforma = document.getElementById('plataformas_input').value;
+    const status1 = document.getElementById('status_input').value;
+    const categoria = document.getElementById('categoria_input').value;
+    const progresso = document.getElementById('progresso_input').value;
+    const recomendo = document.getElementById('recomendo_input').value;
+    const ano = document.getElementById('ano_input').value;
+    const versao = document.getElementById('versao_input').value;
+    const descricao = document.getElementById('descricao_input').value;
+    
+    jogosJSON[`${id}`] = {
+        "id": id,
+        "game": game,
+        "foto": foto,
+        "plataforma": plataforma,
+        "status1": status1,   //aqui teve que ser status 2 pois o js estava dando erro com a palavra status, por favor verificar esse erro
+        "categoria": categoria,
+        "progresso": progresso,
+        "recomendo": recomendo,
+        "ano": ano,
+        "versao": versao,
+        "descricao": descricao
+    };
+    alert("Jogo Cadastrado com Sucesso!");
+    salvarGamesLocalmente();
+    atualizarListaGames();
+    limparFormulario();
+}
+
+function atualizarListaGames() {
+    // gamesContainer.innerHTML = '';
+    let x = '';
+    for (const key in jogosJSON) {
+        if (jogosJSON.hasOwnProperty(key)) {
+            const game = jogosJSON[key];
+            // const gameDiv = document.createElement('div');
+            var imggame = '<img src="' + game.foto + '">';
+            // gameDiv.innerHTML = `<a id="${game.id}" href="game.html" onclick='abrirgame(this)'>${imggame} ${game.game}</a>`;
+            x += `
+            <div class="Imagem_jogos">
+                <a class="link_img_jogo" href="game.html" onclick="abrirgame('${game.id}')">${imggame}</a>
+                <a class="link_jogo" href="game.html">${game.game}</a>
+            </div>`;
+            // gamesContainer.appendChild(gameDiv);
+        }
+    }
+    gamesContainer.innerHTML = x;
+}
+
+function limparFormulario() {
+    formGame.reset();
+}
+
+function salvarGamesLocalmente() {
+    localStorage.setItem('teste4', JSON.stringify(jogosJSON));
 }

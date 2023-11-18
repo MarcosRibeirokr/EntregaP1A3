@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Control Games</title>
     <link rel="stylesheet" href="Stilos/stylecadastrajogo.css">
-    
+    <script src="JS/game.js"></script>
 </head>
 <body>
 
@@ -49,19 +49,30 @@
                 <div class="linha"></div>
             </div>
 
-            <article class="form">
+            <article id="formGame">
+
+                <div id="box_id">
+                    <p>ID do Jogo</p>
+                    <input type="text" id="id_input">
+                </div>
+
                 <div id="box_nome">
                     <p>Nome do Jogo</p>
-                    <input type="text" id="progresso_input">
+                    <input type="text" id="nome_input">
+                </div>
+
+                <div id="box_nome">
+                    <p>URL da capa do Jogo</p>
+                    <input type="text" id="capa_input">
                 </div>
 
                 <div id="box_plataforma">
                     <p>Plataforma</p>
-                    <select id="plataformas" name="plataformas">
-                        <option value="pc">PC</option>
-                        <option value="xbox">Xbox</option>
-                        <option value="play store">Play Store</option>
-                        <option value="psn">PSN</option>
+                    <select id="plataformas_input" name="plataformas">
+                        <option value="PC">PC</option>
+                        <option value="Xbox">Xbox</option>
+                        <option value="Play Store">Play Store</option>
+                        <option value="PlayStation">PSN</option>
                         <option value="steam">Steam</option>
                         <option value="epicgames">Epic Games</option>
                     </select>
@@ -69,16 +80,16 @@
 
                 <div id="box_status">
                     <p>Status</p>
-                    <select id="status" name="status">
-                        <option value="maca">Jogando</option>
-                        <option value="banana">Zerado</option>
-                        <option value="uva">Nunca jogado</option>
+                    <select id="status_input" name="status">
+                        <option value="Jogando">Jogando</option>
+                        <option value="Jogado">Zerado</option>
+                        <option value="Zerado">Nunca jogado</option>
                     </select>
                 </div>
  
                 <div id="box_categoria">
                     <p>Categoria do jogo</p>
-                    <select id="categoria" name="categoria">
+                    <select id="categoria_input" name="categoria">
                         <option value="rpg">RPG</option>
                         <option value="acao">Ação</option>
                         <option value="simulador">Simulador</option>
@@ -98,7 +109,7 @@
                 
                 <div id="box_recomendo">
                     <p>Recomendo o Jogo</p>
-                    <select id="status" name="status">
+                    <select id="recomendo_input" name="recomendacao">
                         <option value="sim">Sim</option>
                         <option value="nao">Não</option>
                         <option value="em avaliacao">Em avaliação</option>
@@ -107,25 +118,38 @@
 
                 <div id="box_ano_lancamento">
                     <p>Ano de Lançamento</p>
-                    <input type="text" id="ano_input">
+                    <input type="date" id="ano_input">
                 </div>
 
                 <div id="box_versao">
                     <p>Versão do Jogo</p>
-                    <select id="versao" name="versao">
-                        <option value="fisica">Fisica</option>
+                    <select id="versao_input" name="versao">
+                        <option value="Fisica">Fisica</option>
                         <option value="Digital">Digital</option>
                     </select>
                 </div>
 
                 <div id="box_descricao">
                     <p>Descrição do Jogo</p>
-                    <textarea name="descricao" id="" cols="55" rows="13"></textarea>
+                    <textarea name="descricao" id="descricao_input" cols="55" rows="13"></textarea>
                 </div>
 
             </article>
 
         </section>
+
+        <section id="botao_cadastrar_jogo">
+            <a href="" onclick="adicionarGame()">Cadastrar Novo Jogo</a>
+        </section>
+
+        <script>
+            // Obtenha a referência ao contêiner de jogos e formulário
+            const gamesContainer = document.getElementById('games');
+            const formGame = document.getElementById('formGame');
+
+            // Inicializar a lista de jogos quando a página carregar
+            // atualizarListaGames();
+        </script>
 
     </main>
 

@@ -211,7 +211,7 @@ main{
 
   .container{
     width: 600px;
-    height: 950px;
+    height: 1050px;
     margin: auto;
     background-color: var(--cor1);
     border-radius: 20px;
@@ -224,7 +224,7 @@ main{
 
 /*Box dentro do container------------------------------------------------------------------------------------------------*/
 
-#box_nome,#box_plataforma ,#box_status ,#box_categoria, #box_progresso, #box_recomendo, #box_ano_lancamento, #box_versao {
+#box_id,#box_nome,#box_plataforma ,#box_status ,#box_categoria, #box_progresso, #box_recomendo, #box_ano_lancamento, #box_versao {
     display: inline-block;
     font-family: var(--fonte-padrao);
     font-size: 16px;
@@ -233,7 +233,7 @@ main{
     padding-bottom: 10px;
 }
 
-#box_nome,#box_plataforma, #box_status, #box_categoria, #box_progresso, #box_recomendo, #box_ano_lancamento, #box_versao p{
+#box_id,#box_nome,#box_plataforma, #box_status, #box_categoria, #box_progresso, #box_recomendo, #box_ano_lancamento, #box_versao p{
     text-align: left;
 }
 
@@ -245,6 +245,32 @@ main{
 
 #box_descricao textarea{
     border-radius: 10px;
+}
+
+/*Botão cadastrar novo Jogo---------------------------------------------------------------------------------------------------------*/
+
+#botao_cadastrar_jogo{
+    display: flex;
+    width: 180px;
+    height: 20px;
+    padding: 15px;
+    border-radius: 15px;
+    border: 2px solid black;
+    font-family: var(--fonte-padrao);
+    background-image: linear-gradient(to right ,#FF7A00 4.24% , #FFB800 79.05% , #FF7A00 100%);
+    transition: 0.8s;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    
+}
+
+#botao_cadastrar_jogo a{
+    text-decoration: none;
+
+}
+
+#botao_cadastrar_jogo:hover{
+    transform: scale(1.2);
 }
 
 /*Footer----------------------------------------------------------------------------------------------------------------------*/
@@ -407,7 +433,7 @@ footer{
     }
 
     /*secção cadastrar jogo--------------------------------------*/
-    #box_nome,#box_plataforma ,#box_status ,#box_categoria, #box_progresso, #box_recomendo, #box_ano_lancamento, #box_versao {
+    #box_id,#box_nome,#box_plataforma ,#box_status ,#box_categoria, #box_progresso, #box_recomendo, #box_ano_lancamento, #box_versao {
         display: inline-block;
         font-family: var(--fonte-padrao);
         font-size: 14px;
@@ -416,10 +442,11 @@ footer{
         padding-bottom: 10px;
     }
     
-    #box_nome,#box_plataforma, #box_status, #box_categoria, #box_progresso, #box_recomendo, #box_ano_lancamento, #box_versao p{
+    #box_id,#box_nome,#box_plataforma, #box_status, #box_categoria, #box_progresso, #box_recomendo, #box_ano_lancamento, #box_versao p{
         text-align: left;
     }
     
+
     .container select,input{
         width: 230px;
         height:30px ;

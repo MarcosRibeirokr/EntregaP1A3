@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Control Games</title>
     <link rel="stylesheet" href="Stilos/stylebiblioteca.css">
+    <script src="JS/game.js"></script>
 </head>
 <body>
     <header>
@@ -47,7 +48,7 @@
                 <div class="linha"></div>
             </div>
 
-            <div class="Jogos">
+            <!-- <div class="Jogos">
                 <div class="Imagem_jogos">
                     <a class="link_img_jogo" href="game.html" id="DIABLO4" onclick="abrirgame(this)"><img src="imagens/Jogos img menor/diablo 4.jpg" alt=""></a>
                     <a class="link_jogo" href="game.html">Diablo IV</a>
@@ -127,13 +128,24 @@
                     <a class="link_img_jogo" href="game.html" id="CODMW3" onclick="abrirgame(this)"><img src="imagens/Jogos img menor/calf of duty mw.jpg" alt=""></a>
                     <a class="link_jogo" href="#">Call of Duty MW3</a>
                 </div>
-            </div>
+            </div> -->
+
+            <div class="Jogos" id="games"></div>
 
         </section>
 
         <section id="botao_cadastrar_jogo">
             <a href="cadastrarjogo.html">Cadastrar Novo Jogo</a>
         </section>
+
+        <script>
+            // Obtenha a referência ao contêiner de jogos para poder atualizar
+            const gamesContainer = document.getElementById('games');
+            const formGame = document.getElementById('formGame');
+
+            // Inicializar a lista de jogos quando a página carregar
+            atualizarListaGames();
+        </script>
     </main>
 
     <footer>

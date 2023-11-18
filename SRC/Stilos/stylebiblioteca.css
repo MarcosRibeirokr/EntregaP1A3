@@ -208,7 +208,7 @@ main{
 
 .Jogos img {
     width: 100%;
-    height: auto;
+    height: 80%;
     border-radius: 20px;
     margin-bottom: 10px;
     transition-duration: 0.8s;
