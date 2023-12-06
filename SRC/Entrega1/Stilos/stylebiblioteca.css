@@ -242,8 +242,7 @@ main{
     background-image: linear-gradient(to right ,#FF7A00 4.24% , #FFB800 79.05% , #FF7A00 100%);
     transition: 0.8s;
     margin-top: 50px;
-    margin-bottom: 20px;
-    
+    margin-bottom: 20px; 
 }
 
 #botao_cadastrar_jogo a{
