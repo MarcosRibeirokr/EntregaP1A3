@@ -12,6 +12,8 @@ const usuarioLogado = localStorage.getItem('usuarioLogado')
 const Paginabiblioteca = () => {
     const [jogos, setJogos] = useState([]);
     const [categoriaSelecionada, setCategoriaSelecionada] = useState(''); 
+    const [categorias, setCategorias] = useState([]);
+
 
 
     useEffect(() => {
@@ -22,6 +24,17 @@ const Paginabiblioteca = () => {
             })
             .catch(error => {
                 console.error('Erro ao buscar Jogos:', error);
+            });
+    }, []);
+
+    useEffect(() => {
+        axios.get(`http://${LocalServerUrl}/categorias`)
+            .then(response => {
+                setCategorias(response.data);
+                console.log(response.data)
+            })
+            .catch(error => {
+                console.error('Erro ao buscar Categorias:', error);
             });
     }, []);
 
@@ -50,27 +63,12 @@ const Paginabiblioteca = () => {
                     <div>
                         <select id="categoria" onChange={(e) => handleCategoriaChange(e.target.value)}>
                         <option value="">Todas as Categorias</option>
-                        <option value="rpg">RPG</option>
-                        <option value="acao">Ação</option>
-                        <option value="simulador">Simulador</option>
-                        <option value="fps">FPS</option>
-                        <option value="terror">Terror</option>
-                        <option value="estratégia">Estratégia</option>
-                        <option value="cooperativo">Cooperativo</option>
-                        <option value="casual">Casual</option>
-                        <option value="mundo aberto">Mundo Aberto</option>
-                        <option value="esportes">Esportes</option>
-                        <option value="aventura">Aventura</option>
-                        <option value="quebra-cabeca">Quebra-Cabeça</option>
-                        <option value="corrida">Corrida</option>
-                        <option value="luta">Luta</option>
-                        <option value="educativo">Educativo</option>
-                        <option value="musical">Musical</option>
-                        <option value="estrategia_em_tempo_real">Estratégia em Tempo Real</option>
-                        <option value="construcao">Construção</option>
-                        <option value="construcao">Outros</option>
-                            {/* Adicione mais opções de categoria conforme necessário */}
-                        </select>
+                        {categorias.map((categoria) => (
+                            <option key={categoria.nomeCategoria} value={categoria.nomeCategoria}>
+                                {categoria.nomeCategoria}
+                            </option>
+                        ))}
+                    </select>
                     </div>
 
                     <ul className='box_imagem_jogos_biblioteca'>

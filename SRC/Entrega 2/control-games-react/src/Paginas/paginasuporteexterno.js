@@ -11,10 +11,10 @@ const Paginasuporteexterno = () => {
             </div>
 
             <div id='mainsuporteexterno'>
-                <div class="divisao">
-                    <div class="linha"></div>
+                <div class="divisaosuporteexterno">
+                    <div class="linhasuporteexterno"></div>
                     <p>Principais dúvidas</p>
-                    <div class="linha"></div>
+                    <div class="linhasuporteexterno"></div>
                 </div>
 
                 <article>

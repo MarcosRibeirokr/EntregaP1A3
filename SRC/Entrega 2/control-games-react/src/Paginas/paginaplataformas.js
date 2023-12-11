@@ -11,7 +11,6 @@ const Paginaplataformas = () => {
     const [plataformas, setPlataformas] = useState([]);
     const [plataforma, setPlataforma] = useState('');
 
-    const [nomePlataforma, setNomePlataforma] = useState(''); //excluir plataforma
     const usuarioLogado = localStorage.getItem('usuarioLogado')
 
 
@@ -63,6 +62,8 @@ const Paginaplataformas = () => {
             alert(`Erro ao excluir plataforma: ${error.message}`);
         }
     };
+
+    
 
 
 

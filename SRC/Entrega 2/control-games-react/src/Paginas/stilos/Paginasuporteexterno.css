@@ -34,7 +34,7 @@
 
 /*divisão das Secções----------------------------------------------------------------------------------------------------------------------------*/
 
-.divisao{
+.divisaosuporteexterno{
     display: flex;
     align-items: center;
     margin: 35px 0;
@@ -45,12 +45,12 @@
     font-weight: 600;
 }
 
-.divisao p{
+.divisaosuporteexterno p{
     padding-left: 25px;
     padding-right: 25px;
 }
 
-.linha{
+.linhasuporteexterno{
     flex: 1;
     border-top: 1px solid white;
     height: 0;

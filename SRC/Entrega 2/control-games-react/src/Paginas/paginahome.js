@@ -51,7 +51,7 @@ const Paginahome = () => {
                                     (
                                         <a key={jogo.id} >
                                             <Link to={`/game/${jogo.nomeJogo}`}>
-                                                <img src={jogo.urlCapaJogo} alt={jogo.nomeJogo} ></img>
+                                                <img  src={jogo.urlCapaJogo} alt={jogo.nomeJogo} ></img>
                                             </Link>
                                         </a>
                                     )

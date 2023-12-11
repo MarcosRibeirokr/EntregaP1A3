@@ -14,6 +14,7 @@ const Paginagame = () => {
     const [jogos, setJogos] = useState([]);
     const [jogoEncontrado, setJogoEncontrado] = useState('');
     const usuarioLogado = localStorage.getItem('usuarioLogado')
+    console.log(usuarioLogado)
     const navigate = useNavigate()
 
 
@@ -40,10 +41,20 @@ const Paginagame = () => {
     }, []);
 
     useEffect(() => {
-        const alertPlataforma = jogos.find((jogo) => jogo.plataforma === 'N/A Plataforma')
+        const alertPlataforma = jogos.find((jogo) => jogo.plataforma === 'N/A Categoria')
 
 
         if (alertPlataforma) {
+            alert('É necessário alterar a categoria do Jogo!')
+        }
+
+    }, [jogos]);
+
+    useEffect(() => {
+        const alertCategoria = jogos.find((jogo) => jogo.categoria === 'N/A Plataforma')
+
+
+        if (alertCategoria) {
             alert('É necessário alterar a plataforma do Jogo!')
         }
 

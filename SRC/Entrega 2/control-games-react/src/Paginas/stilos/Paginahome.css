@@ -201,12 +201,41 @@
     width: 100%;
 } */
 
+@media(max-width: 1100px){
+
+    .linha{
+        margin: 0 35px;
+    }
+
+    #ultimo_jogo img {
+        width: 95%;
+        height: 55vh;
+        border-radius: 20px;
+    }
+
+    .Imagem_mais_jogados,.Imagens_zerados,.Imagens_jogando_agora,.Imagens_nrecomendado{
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    
+
+}
+
 @media(max-width: 900px){
-    body {
+    #bodyhome {
         display: flex;
         flex-direction: column;
         min-height: 100vh;
-      }
+    }
+
+    #mainhome img{
+        height:150px;
+    }
+
+    .linha{
+        margin: 0 30px;
+    }
 
     #footer01{
         position: relative;
@@ -237,6 +266,8 @@
     /* Mais Jogados -----------------------------------------*/
     .Imagem_mais_jogados {
         gap: 20px; 
+        padding-left: 20px;
+        padding-right: 20px;
     }
 
     .Mais_jogados{
@@ -291,4 +322,10 @@
     }
 
 
+}
+
+@media(max-width: 550px){
+    .linha{
+        margin: 0 0px;
+    }
 }

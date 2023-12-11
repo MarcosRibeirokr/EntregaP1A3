@@ -16,10 +16,15 @@ import Paginagame from './paginagame'
 import Paginacadastroplataforma from './paginacadastroplataformas'
 import Paginasuporteexterno from "./paginasuporteexterno";
 import Paginaatualizajogo from './paginaatualizajogo'
+import Paginacadastrarcategoria from "./paginacadastrarcategoria";
+
+
 
 
 
 const Rotas = () => {
+    const usuarioLogado = localStorage.getItem('usuarioLogado')
+
     const [jogos, setJogos] = useState([]);
     useEffect(() => {
         axios.get(`http://${LocalServerUrl}/jogos`)
@@ -48,10 +53,12 @@ const Rotas = () => {
                 {/* <Route exact path={"/game"} element={<Paginagame />} /> */}
                 <Route exact path={"/plataformascadastro"} element={<Paginacadastroplataforma />} />
                 <Route exact path={"/paginaatualizajogo"} element={<Paginaatualizajogo />} />
+                <Route exact path={"/cadastrocategoria"} element={<Paginacadastrarcategoria/>} />
             </Routes>
             {
                 jogos
-                    .map(jogo => (
+                .filter((jogo) => jogo.usuario === usuarioLogado)
+                .map(jogo => (
                         <Routes>
                             <Route exact path={`/game/${jogo.nomeJogo}`} element={<Paginagame/>}>
                             </Route>

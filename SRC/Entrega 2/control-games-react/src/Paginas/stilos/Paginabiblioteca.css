@@ -94,6 +94,42 @@
 }
 
 
+@media(max-width : 1100px){
+
+    .divisaobiblioteca{
+        display: flex;
+        align-items: center;
+        margin: 35px 0;
+    
+        font-family: var(--fonte-titulo2);
+        color: white;
+        font-size: 24px;
+        font-weight: 600;
+    }
+    
+    .divisaobiblioteca p{
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+    
+    .linhabiblioteca{
+        margin: 0 35px;
+    }
+
+    .box_imagem_jogos_biblioteca{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px; 
+        width: 90%;
+        padding: 20px;
+        margin: auto;
+    }
+
+    #botao_cadastrar_jogo{
+        padding-left: 40px;
+    }
+}
+
 @media(max-width: 900px){
     .box_imagem_jogos_biblioteca{
         display: grid;
@@ -113,7 +149,7 @@
 
     #botao_cadastrar_jogo{
         padding-top: 50px;
-        padding-left: 20px;
+        padding-left: 40px;
     }
 
 }

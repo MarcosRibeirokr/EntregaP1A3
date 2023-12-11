@@ -10,13 +10,16 @@ app.use(express.json())
 const db = new sqlite3.Database('controlGames.db')
 
 //criando tabela games
-db.run('CREATE TABLE IF NOT EXISTS jogos (id INTEGER PRIMARY KEY AUTOINCREMENT, nomeJogo TEXT NOT NULL, urlCapaJogo TEXT NOT NULL, plataforma TEXT NOT NULL, status TEXT NOT NULL, categoria TEXT NOT NULL, progresso TEXT NOT NULL, recomendo TEXT NOT NULL, ano TEXT NOT NULL, descricao TEXT NOT NULL, usuario INTEGER NOT NULL, UNIQUE(nomeJogo, usuario), FOREIGN KEY(plataforma) REFERENCES plataformas(nomePlataforma), FOREIGN KEY(usuario) REFERENCES usuarios(id))')
+db.run('CREATE TABLE IF NOT EXISTS jogos (id INTEGER PRIMARY KEY AUTOINCREMENT, nomeJogo TEXT NOT NULL, urlCapaJogo TEXT NOT NULL, plataforma TEXT NOT NULL, status TEXT NOT NULL, categoria TEXT NOT NULL, progresso TEXT NOT NULL, recomendo TEXT NOT NULL, ano TEXT NOT NULL, descricao TEXT NOT NULL, usuario INTEGER NOT NULL, UNIQUE(nomeJogo, usuario), FOREIGN KEY(plataforma) REFERENCES plataformas(nomePlataforma), FOREIGN KEY(categoria) REFERENCES categorias(nomeCategoria), FOREIGN KEY(usuario) REFERENCES usuarios(id))')
 
 // criando tabela usuarios
 db.run('CREATE TABLE IF NOT EXISTS usuarios (id INTEGER PRIMARY KEY AUTOINCREMENT, nickname TEXT NOT NULL UNIQUE, email TEXT NOT NULL, senha TEXT NOT NULL, avatar TEXT NOT NULL)')
 
 //criando tabela plataformas
 db.run('CREATE TABLE IF NOT EXISTS plataformas (id INTEGER PRIMARY KEY AUTOINCREMENT, nomePlataforma TEXT NOT NULL UNIQUE, urlCapaPlataforma TEXT NOT NULL)')
+
+//criando tabela categorias
+db.run('CREATE TABLE IF NOT EXISTS categorias (id INTEGER PRIMARY KEY AUTOINCREMENT, nomeCategoria TEXT NOT NULL UNIQUE)')
 
 // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -284,6 +287,81 @@ app.delete('/plataformas/:nomePlataforma/:usuario', (req, res) => {
             return res.status(400).json({ error: 'Usuário tem que ser o administrador' });
         }
 
+    });
+});
+
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//puxando dados de categorias
+app.get('/categorias', (req, res) => {
+    db.all('SELECT id, nomeCategoria FROM categorias', (err, rows) => {
+        if (err) {
+            res.status(500).json({ error: err.message });
+            return;
+        }
+        res.json(rows);
+    });
+});
+
+//inserindo nova categoria
+app.post('/categorias', (req, res) => {
+    const { nomeCategoria } = req.body;
+
+    if (!nomeCategoria) {
+        return res.status(400).json({ error: 'Os campos são obrigatórios' });
+    }
+
+    db.run('INSERT INTO categorias (nomeCategoria) VALUES (?)', [nomeCategoria], function (err) {
+        if (err) {
+            return res.status(500).json({ error: err.message });
+        }
+
+        res.json({ id: this.lastID, nomeCategoria });
+    });
+});
+
+//deletando categoria com base em nome da categoria (codigo no front end para so poder excluir quem é administrador)
+app.delete('/categorias/:nomeCategoria/:usuario', (req, res) => {
+    const nomeCategoria = req.params.nomeCategoria;
+    const usuario = req.params.usuario;
+
+    console.log(nomeCategoria)
+
+    if (!nomeCategoria) {
+        console.log('categoria obrigatorio')
+
+        return res.status(400).json({ error: 'Nome da categoria é obrigatório' });
+    }
+
+    // Atualizar o campo 'categoria' nos jogos associados a essa plataforma
+    db.run('SELECT nickname FROM usuarios WHERE nickname = ?', [usuario], (err) => {
+        if (err) {
+            return res.status(400).json({ error: 'Usuário tem que ser o administrador' });
+        }
+        if (usuario === 'admin') {
+
+            db.run('UPDATE jogos SET categoria = ? WHERE categoria = ?', ['N/A Categoria', nomeCategoria], (err) => {
+                if (err) {
+                    return res.status(500).json({ error: err.message });
+                }
+
+                // Excluir a plataforma após atualizar os jogos associados
+                db.run('DELETE FROM categorias WHERE nomeCategoria = ?', [nomeCategoria], function (err) {
+                    if (err) {
+                        return res.status(500).json({ error: err.message });
+                    }
+
+                    if (this.changes === 0) {
+                        return res.status(404).json({ error: 'Categoria não encontrada' });
+                    }
+
+                    res.json({ message: 'Categoria excluída e campo "categoria" atualizado nos jogos associados com sucesso' });
+                });
+            });
+        }else {
+            return res.status(400).json({ error: 'Usuário tem que ser o administrador' });
+        }
+        
     });
 });
 

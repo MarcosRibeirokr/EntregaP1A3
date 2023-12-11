@@ -14,6 +14,7 @@ function Form_cadastrojogo() {
     const [plataformas, setPlataformas] = useState([]);
     const [plataforma, setPlataforma] = useState('');
     const [status, setStatus] = useState('');
+    const [categorias, setCategorias] = useState([]);
     const [categoria, setCategoria] = useState('');
     const [progresso, setProgresso] = useState('');
     const [recomendo, setRecomendo] = useState('');
@@ -30,8 +31,18 @@ function Form_cadastrojogo() {
         }
     };
 
+    const carregarCategorias = async () => {
+        try {
+            const response = await axios.get(`http://${LocalServerUrl}/categorias`);
+            setCategorias(response.data);
+        } catch (error) {
+            console.error('Erro ao carregar Categorias:', error);
+        }
+    };
+
     useEffect(() => {
         carregarPlataformas();
+        carregarCategorias();
     }, []);
 
     const CriarJogo = async () => {
@@ -100,7 +111,7 @@ function Form_cadastrojogo() {
                     </select>
                 </div>
 
-                <div id="box_categoriacadastrarjogo">
+                {/* <div id="box_categoriacadastrarjogo">
                     <p>Categoria do jogo</p>
                     <select id="categoria_inputcadastrarjogo" name="categoria" value={categoria} onChange={(e) => setCategoria(e.target.value)}>
                         <option value=''>Selecione uma Categoria</option>
@@ -125,7 +136,20 @@ function Form_cadastrojogo() {
                         <option value="construcao">Outros</option>
 
                     </select>
+                </div> */}
+
+                <div id="box_categoriacadastrarjogo">
+                    <p>Categoria do Jogo</p>
+                    <select id="categoria_inputcadastrarjogo" name="categoria" value={categoria} onChange={(e) => setCategoria(e.target.value)}>
+                    <option value=''>Selecione uma Categoria</option>
+                        {categorias.map((categoria) => (
+                            <option key={categoria.nomeCategoria} value={categoria.nomeCategoria}>
+                                {categoria.nomeCategoria}
+                            </option>
+                        ))}
+                    </select>
                 </div>
+                
 
                 <div id="box_progressocadastrarjogo">
                     <p>Progresso do jogo</p>

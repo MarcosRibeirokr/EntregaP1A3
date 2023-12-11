@@ -16,7 +16,7 @@
 #mainplataformas{
     /* min-width: 100vh; */
     max-width: 1000px;
-    height: 70vh;
+    /* height: 70vh; */
     margin: auto;
     
 }
@@ -152,6 +152,7 @@
 }
 
 @media(max-width: 900px){
+
     #biblioteca{
         width: 100vw;
     }
@@ -191,14 +192,19 @@
         border-radius: 50%;
     }
 
-    .Mostrar_plataformas p{
+    #footer01plataformas{
+        margin-top: 20px;
         
     }
 
-    #footer01plataformas{
+    /* .Mostrar_plataformas p{
+        
+    } */
+
+    /* #footer01plataformas{
         position: relative;
         bottom: 0;
         width: 100%;
         padding-top: 50px;
-    }
+    } */
 }

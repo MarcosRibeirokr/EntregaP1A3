@@ -21,6 +21,7 @@ export function Form_atualizajogo() {
     const [plataforma, setPlataforma] = useState('');
     const [status, setStatus] = useState('');
     const [categoria, setCategoria] = useState('');
+    const [categorias, setCategorias] = useState([]);
     const [progresso, setProgresso] = useState('');
     const [recomendo, setRecomendo] = useState('');
     const [ano, setAno] = useState('');
@@ -66,6 +67,17 @@ export function Form_atualizajogo() {
         axios.get(`http://${LocalServerUrl}/jogos`)
             .then(response => {
                 setJogos(response.data);
+                console.log(response.data)
+            })
+            .catch(error => {
+                console.error('Erro ao buscar Jogos:', error);
+            });
+    }, []);
+
+    useEffect(() => {
+        axios.get(`http://${LocalServerUrl}/categorias`)
+            .then(response => {
+                setCategorias(response.data);
                 console.log(response.data)
             })
             .catch(error => {
@@ -257,25 +269,12 @@ export function Form_atualizajogo() {
                     <p>Categoria do jogo</p>
                     <select id="categoria_inputcadastrarjogo" name="categoria" value={novaCategoria} onChange={(e) => setNovaCategoria(e.target.value)}>
                     <option value=''>Selecione uma Categoria</option>
-                        <option value="rpg">RPG</option>
-                        <option value="acao">Ação</option>
-                        <option value="simulador">Simulador</option>
-                        <option value="fps">FPS</option>
-                        <option value="terror">Terror</option>
-                        <option value="estratégia">Estratégia</option>
-                        <option value="cooperativo">Cooperativo</option>
-                        <option value="casual">Casual</option>
-                        <option value="mundo aberto">Mundo Aberto</option>
-                        <option value="esportes">Esportes</option>
-                        <option value="aventura">Aventura</option>
-                        <option value="quebra-cabeca">Quebra-Cabeça</option>
-                        <option value="corrida">Corrida</option>
-                        <option value="luta">Luta</option>
-                        <option value="educativo">Educativo</option>
-                        <option value="musical">Musical</option>
-                        <option value="estrategia_em_tempo_real">Estratégia em Tempo Real</option>
-                        <option value="construcao">Construção</option>
-                        <option value="construcao">Outros</option>                    </select>
+                    {categorias.map((categoria) => (
+                            <option key={categoria.nomeCategoria} value={categoria.nomeCategoria}>
+                                {categoria.nomeCategoria}
+                            </option>
+                        ))}
+                    </select>
                 </div>
 
                 <div id="box_progressocadastrarjogo">
